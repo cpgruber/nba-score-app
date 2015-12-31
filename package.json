@@ -8,6 +8,9 @@
   },
   "author": "Chase Gruber",
   "license": "ISC",
+  "engines": {
+    "node": "5.1.0"
+  },
   "dependencies": {
     "body-parser": "^1.14.2",
     "express": "^4.13.3",
