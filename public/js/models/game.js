@@ -8,7 +8,7 @@ Game.fetch = function(date){
   return $.ajax({
     type:"GET",
     dataType:"json",
-    url:("https://shielded-dawn-3177.herokuapp.com"||"http://localhost:4000/games?date=")+date
+    url:"https://shielded-dawn-3177.herokuapp.com/games?date="+date
   }).then(function(results){
     var games = []
     results.games.forEach(function(result){
