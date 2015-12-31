@@ -1,0 +1,63 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+*{
+  box-sizing: border-box;
+  margin:0;
+  font-family: "Montserrat", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif, sans-serif;
+}
+body{
+  background-color: #DFD9C5;
+}
+.cf:after{
+  content:"";
+  display:table;
+  clear:both;
+}
+footer img{
+  height:60px;
+  vertical-align: middle;
+}
+a,a:visited,a:active,a:focus,a:hover,a:target,a:link{
+  color:#00C1E0;
+  text-decoration: none;
+}
+main,header,footer{
+  width:100%;
+  padding:30px;
+}
+.inner{
+  margin:0 auto;
+  max-width:960px;
+}
+.ui-container{
+  margin-bottom:2em;
+}
+.game-container{
+  width:50%;
+  display:inline-block;
+  float:left;
+}
+header,footer{
+  background-color: #DFD9C5;
+}
+main{
+  background-color:#ECE6D2;
+}
+footer{
+  text-align:center;
+  padding:10px;
+}
+@media (max-width:760px){
+  .game-container{
+    width:80%;
+    display:block;
+  }
+  header img{
+    height:60px;
+  }
+}
+@media (max-width:500px){
+  .game-container{
+    width:95%;
+    display:block;
+  }
+}
