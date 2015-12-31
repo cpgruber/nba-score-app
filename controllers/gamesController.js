@@ -1,7 +1,7 @@
 var request = require("request");
 var Day = require("../models/day");
 var Game = require("../models/game");
-var env = require("../env.js");
+var envjs = require("../env.js");
 
 function error(response, message){
   response.status(500);
@@ -13,7 +13,7 @@ var stattleship_params = {
   json:true,
   headers:{
     'Content-Type':'application/json',
-    'Authorization':'Token token='+env.key,
+    'Authorization':'Token token='+(env.process.stattleship||envjs.key),
     'Accept':'application/vnd.stattleship.com; version=1.2'
   }
 }
