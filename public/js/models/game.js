@@ -5,10 +5,11 @@ var Game = function(info){
 }
 
 Game.fetch = function(date){
+  var baseURL = window.location.href;
   return $.ajax({
     type:"GET",
     dataType:"json",
-    url:"http://localhost:4000/games?date="+date
+    url:baseURL+"/games?date="+date
   }).then(function(results){
     var games = []
     results.games.forEach(function(result){
