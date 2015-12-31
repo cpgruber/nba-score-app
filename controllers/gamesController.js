@@ -13,7 +13,7 @@ var stattleship_params = {
   json:true,
   headers:{
     'Content-Type':'application/json',
-    'Authorization':'Token token='+(env.process.stattleship||envjs.key),
+    'Authorization':'Token token='+(process.env.stattleship||envjs.key),
     'Accept':'application/vnd.stattleship.com; version=1.2'
   }
 }
