@@ -5,10 +5,12 @@ var Game = function(info){
 }
 
 Game.fetch = function(date){
+  var baseURL = window.location.href;
+  console.log(baseURL)
   return $.ajax({
     type:"GET",
     dataType:"json",
-    url:"https://shielded-dawn-3177.herokuapp.com/games?date="+date
+    url:baseURL+"games?date="+date
   }).then(function(results){
     var games = []
     results.games.forEach(function(result){
