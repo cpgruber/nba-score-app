@@ -4,7 +4,7 @@ var GameView = function(game){
     team.palette = Game.getPalette(team);
   });
   this.margins = {
-    left:60,right:60
+    left:40,right:20
   }
   this.$el = $("<div class='game-container'>");
   this.render();
@@ -24,9 +24,11 @@ GameView.prototype = {
     return g;
   },
   addRects:function(g){
+    var self = this;
     g.append("rect").attr("width",function(d){
       return GameView.scale(d3.sum(d.points))
     }).attr("height",21).style("fill","none").style("stroke","black")
+    .attr("transform","translate("+self.margins.left+",0)")
 
     g.selectAll(".q").data(function(d){return d.points.filter(function(a){return a>0})}).enter().append("rect")
       .attr("class","q")
@@ -40,7 +42,7 @@ GameView.prototype = {
         for (var b=0;b<i;b++){
           prevPoint+=vals[b]
         }
-        return "translate("+GameView.scale(prevPoint)+",0)"
+        return "translate("+(self.margins.left+(GameView.scale(prevPoint)))+",0)"
       })
       .style("fill",function(d,i){
         var palette = d3.select(this.parentNode).datum().palette;
@@ -48,6 +50,7 @@ GameView.prototype = {
       })
   },
   addText:function(g){
+    var self = this;
     g.selectAll(".score").data(function(d){return d.points.filter(function(a){return a>0})}).enter().append("text")
       .attr("class","score")
       .attr("text-anchor","end")
@@ -55,9 +58,9 @@ GameView.prototype = {
         var prevPoint = 0;
         var vals = d3.select(this.parentNode).datum().points;
         for (var b=0;b<i+1;b++){
-          prevPoint+=vals[b]
+          prevPoint+=vals[b];
         }
-        return "translate("+GameView.scale(prevPoint-1)+",15)"
+        return "translate("+(self.margins.left+(GameView.scale(prevPoint-1)))+",15)"
       })
       .text(function(d,i){
         var prevPoint = 0;
@@ -80,7 +83,7 @@ GameView.prototype = {
     tops.html('Top players:');
     teams.forEach(function(team){
       topPlayer = team.topPlayer;
-      var lineString = topPlayer.points+"pts"
+
       var line = [];
       if(topPlayer.rebounds_total > 3){
         line.push([topPlayer.rebounds_total,"reb"]);
@@ -100,21 +103,34 @@ GameView.prototype = {
         otherStats.push(line[i].join(""));
       }
       var otherString = otherStats.join(", ");
-      lineString += ", "+otherString;
+      var lineString = [topPlayer.points+"pts",otherString].join(", ");
       tops.append("<p>"+team.name+" "+team.nickname+": "+topPlayer.name+" "+lineString+"</p>")
     })
     self.$el.append(tops)
+  },
+  addLabels:function(svg){
+    var self = this;
+    svg.selectAll("g").append("text")
+      .style("font-size",12)
+      .text(function(d){
+        return d.slug.split("-")[1];
+      })
+      .attr("text-anchor","end")
+      .attr("transform",function(d,i){
+        return "translate("+(self.margins.left-5)+",15)rotate(0)"
+      })
   },
   render:function(){
     this.$el.empty();
     this.$el.append("<p>"+this.game.matchup+"</p>");
     var mainW = $(".inner").width();
     var w = (mainW>700)?mainW*0.5:mainW*0.9;
-    GameView.scale.range([0,(w-this.margins.right)])
+    GameView.scale.range([0,(w-this.margins.right-this.margins.left)])
     var svg = d3.select(this.$el[0]).append("svg").attr('height',50).attr('width',w);
     var g = this.makeGs(svg);
     this.addRects(g);
     this.addText(g);
+    this.addLabels(svg);
     this.addTopPlayers(this.game.teams);
   }
 }

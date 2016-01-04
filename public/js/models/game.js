@@ -27,7 +27,7 @@ Game.getMax = function(games){
   })
 }
 
-Game.makeScale = function(max,w){
+Game.makeScale = function(max){
   return d3.scale.linear().domain([0,max])
 }
 
