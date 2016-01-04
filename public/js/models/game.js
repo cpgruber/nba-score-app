@@ -9,7 +9,7 @@ Game.fetch = function(date){
   return $.ajax({
     type:"GET",
     dataType:"json",
-    url:baseURL+"/games?date="+date
+    url:baseURL+"games?date="+date
   }).then(function(results){
     var games = []
     results.games.forEach(function(result){

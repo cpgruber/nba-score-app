@@ -36,6 +36,10 @@ main,header,footer{
   display:inline-block;
   float:left;
 }
+.tops{
+  font-size:12px;
+  margin-bottom:2em;
+}
 header,footer{
   background-color: #DFD9C5;
 }
