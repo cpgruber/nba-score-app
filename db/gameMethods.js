@@ -1,4 +1,4 @@
-// var envjs = require("../env.js");
+var envjs = require("../env.js");
 var request = require("request");
 var Day = require("../models/day");
 var Game = require("../models/game");
@@ -8,7 +8,7 @@ var stattleship_params = {
   json:true,
   headers:{
     'Content-Type':'application/json',
-    'Authorization':'Token token='+process.env.stattleship,
+    'Authorization':'Token token='+envjs.key,//process.env.stattleship,
     'Accept':'application/vnd.stattleship.com; version=1.2'
   }
 }
@@ -120,8 +120,22 @@ function mapData(data){
   })
 }
 
+function formatDate(date){
+  var year = date.getFullYear();
+  var month = date.getMonth()+1;
+  var day = date.getDate();
+  if (month.toString().length == 1){
+    month = "0"+month;
+  }
+  if (day.toString().length == 1){
+    day = "0"+day;
+  }
+  return year+"-"+month+"-"+day;
+}
+
 module.exports = {
   getData:getData,
   getTopPerformances:getTopPerformances,
-  mapData:mapData
+  mapData:mapData,
+  formatDate:formatDate
 }
