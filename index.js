@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var router = require('./config/routes');
 
-mongoose.connect(process.env.MONGOLAB_URI||'mongodb://localhost/nba-scoreboard');
+// mongoose.connect(process.env.MONGOLAB_URI||'mongodb://localhost/nba-scoreboard');
 
 var app = express();
 app.use(bodyParser.json());

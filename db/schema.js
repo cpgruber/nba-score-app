@@ -1,5 +1,6 @@
 // requiring mongoose dependency
 var mongoose = require('mongoose');
+mongoose.connect(process.env.MONGOLAB_URI||'mongodb://localhost/nba-scoreboard');
 // instantiate a name space for our Schema constructor defined by mongoose.
 var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId
