@@ -1,4 +1,4 @@
-var envjs = require("../env.js");
+// var envjs = require("../env.js");
 var request = require("request");
 var Day = require("../models/day");
 var Game = require("../models/game");
