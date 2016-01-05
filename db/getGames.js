@@ -7,7 +7,6 @@ var mongoose = require("mongoose");
 var now = new Time.Date();
 now.setTimezone("America/New_York");
 var dateString = Methods.formatDate(now);
-console.log(dateString)
 var url = 'https://www.stattleship.com/basketball/nba/team_game_logs?on='+dateString;
 
 Methods.getData(url).then(function(games){
