@@ -1,4 +1,6 @@
-#! /app/bin/node
+#! /lib/bin/env node
+
+console.log("HELLO FROM GETGAMES")
 var Methods = require("../db/gameMethods");
 var Day = require("../models/day");
 var Game = require("../models/game");
