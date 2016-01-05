@@ -1,4 +1,4 @@
-var request = require("request");
+// var request = require("request");
 var Day = require("../models/day");
 var Game = require("../models/game");
 var Methods = require("../db/gameMethods")

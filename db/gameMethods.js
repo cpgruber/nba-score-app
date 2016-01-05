@@ -1,5 +1,7 @@
 var envjs = require("../env.js");
 var request = require("request");
+var Day = require("../models/day");
+var Game = require("../models/game");
 
 var stattleship_params = {
   method:'GET',
