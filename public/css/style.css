@@ -36,6 +36,9 @@ main,header,footer{
   display:inline-block;
   float:left;
 }
+.outcome{
+  margin-bottom:0.3em;
+}
 .tops{
   font-size:12px;
   margin-bottom:2em;
