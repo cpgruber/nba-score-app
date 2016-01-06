@@ -1,5 +1,5 @@
 var fs = require("fs");
-var env = fs.existsSync("./env.js") ? require("./env") : process.env;
+var env = fs.existsSync("./env.js") ? require("../env") : process.env;
 var request = require("request");
 var Day = require("../models/day");
 var Game = require("../models/game");
