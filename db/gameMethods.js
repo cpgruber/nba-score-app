@@ -1,4 +1,5 @@
-// var envjs = require("../env.js");
+var fs = require("fs");
+var env = fs.existsSync("./env.js") ? require("./env") : process.env;
 var request = require("request");
 var Day = require("../models/day");
 var Game = require("../models/game");
@@ -8,7 +9,7 @@ var stattleship_params = {
   json:true,
   headers:{
     'Content-Type':'application/json',
-    'Authorization':'Token token='+process.env.stattleship,
+    'Authorization':'Token token='+env.stattleship,
     'Accept':'application/vnd.stattleship.com; version=1.2'
   }
 }
