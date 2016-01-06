@@ -1,9 +1,11 @@
 $(document).ready(function(){
   var today = new Date();
+  today.setHours(today.getHours()-8);
   var tDate = today.toISOString().substring(0, 10);
   var yesterday = new Date(today.setDate(today.getDate()-1));
   var yDate = yesterday.toISOString().substring(0, 10);
   $("input").val((yesterday.getMonth() + 1)+'/'+yesterday.getDate()+'/'+yesterday.getFullYear());
+  console.log(tDate,yDate)
   fetchGames(tDate);
 
   $("input").datepicker({

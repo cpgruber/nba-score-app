@@ -20,6 +20,7 @@ var gamesController = {
       }else{
         Methods.getData(url).then(function(games){
           Methods.getTopPerformances(Methods.mapData(games)).then(function(gameLogs){
+            console.log(gameLogs)
             var dayObject = {
               createdAt: Date(),
               day: dateString
@@ -27,6 +28,7 @@ var gamesController = {
             var newDay = new Day(dayObject);
             for (var i=0;i<gameLogs.length;i++){
               newDay.games.push(new Game({createdAt:Date(),game:gameLogs[i]}))
+              console.log("added all these games")
             }
             newDay.save(function(err){
               if(!err){

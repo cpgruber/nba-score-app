@@ -1,4 +1,4 @@
-// var envjs = require("../env.js");
+var envjs = require("../env.js");
 var request = require("request");
 var Day = require("../models/day");
 var Game = require("../models/game");
@@ -8,7 +8,7 @@ var stattleship_params = {
   json:true,
   headers:{
     'Content-Type':'application/json',
-    'Authorization':'Token token='+process.env.stattleship,
+    'Authorization':'Token token='+envjs.key,//process.env.stattleship,
     'Accept':'application/vnd.stattleship.com; version=1.2'
   }
 }
@@ -32,6 +32,7 @@ var getData = function (url) {
 var getTopPerformances = function(games){
   console.log("getting top performances")
   return new Promise(function(resolve, reject){
+    console.log("getting player game logs")
     getPlayerLogs(games).then(function(logs){
       resolve(mapPlayerLogs(logs,games))
     })
@@ -46,6 +47,7 @@ var getTopPlayer = function(team_id,log){
   if (topPlayer){
     topPlayer.name = log.players.filter(function(a){return a.id == topPlayer.player_id})[0].name;
   }
+  console.log("got top player")
   return topPlayer;
 }
 
@@ -62,6 +64,7 @@ var mapPlayerLogs = function(logs,games){
     home.topPlayer = topHome;
     away.topPlayer = topAway;
   }
+  console.log("mapped player log")
   return games;
 }
 
